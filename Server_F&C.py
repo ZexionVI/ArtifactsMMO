@@ -139,8 +139,8 @@ class MMOAPI:
         response = self.request(self.urls['gathering'], method='POST')
         return response["data"]["cooldown"]["total_seconds"]
 
-    def find_location(self, content_type: str, workshop_name: str) -> Tuple[int, int]: #-(9)
-        params = {"content_type": content_type, "content_code": workshop_name} 
+    def find_workshop_location(self, workshop_name: str) -> Tuple[int, int]: #-(9)
+        params = {"content_type": "workshop", "content_code": workshop_name} 
         location = self.request(self.urls['maps'], params=params)["data"] #(0)
         return location[0]["x"], location[0]["y"]
 
@@ -209,6 +209,8 @@ def main(character):
         items = api.get_items_by_skill_level(skill, level) #Запись в список всех возможных предметов для крафта (2)
         print(f"{skill.capitalize()} (уровень {level}):") #Вывод названия и уровня навыка
         for item in items: #Цикл для вывода предметов для крафта для навыка
+            if item in ("copper_dagger","wooden_staff"):
+                continue
             print(f"Начинается процесс для {item}") 
             print()  # Пустая строка между разделами для читаемости
 
@@ -279,7 +281,7 @@ def main(character):
                         quantity_in_inventory = api.get_quantity_item_inventory(component['code']) #Подсчёт кол-ва нужных предметов в инвентаре (6)
 
             for craft_item in reversed(api.craft_road): #Проход по всем этапам рецепта крафта
-                x, y = api.find_location("workshop", craft_item["skill"]) #Поиск местоположения нужного воркшопа (9)
+                x, y = api.find_location(craft_item["skill"]) #Поиск местоположения нужного воркшопа (9)
                 print(f"Move {x},{y}")
                 move_cooldown = api.move_to(x, y) #Передвижение (5)
                 time.sleep(move_cooldown)
@@ -289,14 +291,18 @@ def main(character):
                 time.sleep(craft_cooldown)
 
             #Четвёртый этап: продажа предметов
-            x, y = api.find_location("grand_exchange", "grand_exchange") #Поиск местоположения магазина (9)
+            x, y = api.find_location("grand_exchange") #Поиск местоположения магазина (4)
             print(f"Move to Grand Exchange")
             move_cooldown = api.move_to(x, y) #Передвижение (5)
             time.sleep(move_cooldown)
 
-            sell_info = api.get_item_info(item)["ge"]
-            sell_cooldown = api.sell_item(sell_info["code"], quantity, sell_info["sell_price"])
+            sell_info = api.get_item_info(item)["ge"] # Инфа о предмете для продажи (11.3)
+            sell_cooldown = api.sell_item(sell_info["code"], quantity, sell_info["sell_price"]) # Продажа предмета (12)
+            print("Был продан", sell_info["code"], "за", sell_info["sell_price"])
             time.sleep(sell_cooldown)
+
+            api.components = []
+            api.craft_road = []
 
 
 
