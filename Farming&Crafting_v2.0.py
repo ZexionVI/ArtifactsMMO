@@ -2,7 +2,7 @@ import requests
 import time
 from typing import List, Dict, Tuple
 
-
+#Основной класс со всеми функциями
 class MMOAPI:
     def __init__(self, server: str, token: str, character: str):
         self.server = server
@@ -260,6 +260,7 @@ def main():
                 print("Equip iron pickaxe")
                 equip_cooldown = api.equip_item("iron_pickaxe", "weapon")
                 time.sleep(equip_cooldown)
+                
             elif component["subtype"] == "woodcutting" and character == "Jan3":
                 print("Unequip weapon")
                 unequip_cooldown = api.unequip_item("weapon")
@@ -288,5 +289,5 @@ def main():
 
 
 #Запуск кода только в том случае если код был запущен вручную
-if __name__ == "__main__":
+while True:
     main()
