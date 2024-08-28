@@ -287,6 +287,9 @@ def main():
         craft_cooldown = api.craft(craft_item["code"], craft_item["quantity"]) #Крафт нужного предмета в нужном кол-ве (10)
         time.sleep(craft_cooldown)
 
+        api.components = []
+        api.craft_road = []
+
 
 #Запуск кода только в том случае если код был запущен вручную
 while True:
