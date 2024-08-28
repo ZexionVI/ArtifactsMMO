@@ -301,6 +301,7 @@ def main(character):
             print("Был продан", sell_info["code"], "за", sell_info["sell_price"])
             time.sleep(sell_cooldown)
 
+            #Обнуление списков
             api.components = []
             api.craft_road = []
 
