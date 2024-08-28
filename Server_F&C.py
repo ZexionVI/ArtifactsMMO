@@ -305,8 +305,6 @@ def main(character):
             api.components = []
             api.craft_road = []
 
-
-
 character = input("Выбери персонажа (Jan3, Lil_Z, Aryan): ")
 #Запуск
 while True:
