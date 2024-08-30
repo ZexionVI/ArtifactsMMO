@@ -117,8 +117,6 @@ def main(character):
         api.components = []
         api.craft_road = []
 
-
-
 character = input("Выбери персонажа (Blue_Rose): ")
 skill_for_up = ""
 #Запуск
