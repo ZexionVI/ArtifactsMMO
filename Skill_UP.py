@@ -15,8 +15,7 @@ def main(character):
     levels = api.get_character_skills() #запись в словарь навыки и их уровень. Вызов функции из класса (1)
     for skill, level in levels.items(): #Цикл по каждому навыку
         
-        print(f"{skill.capitalize()} (уровень {level}):") #Вывод названия и уровня навыка
-        print(" ")
+        print(f"{skill} (уровень {level}):") #Вывод названия и уровня навыка
     if skill_for_up == "":
         skill_for_up = input("Выбери навык, который необходимо апнуть: ")
     items = api.get_items_by_skill_level(skill_for_up, level) #Запись в список всех возможных предметов для крафта (2)
