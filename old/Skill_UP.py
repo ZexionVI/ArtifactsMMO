@@ -6,7 +6,7 @@ def main(character):
     
     #Основные неизменные переменные (сервер, токен и выбор имени персонажа)
     server = "https://api.artifactsmmo.com"
-    token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6IlpleGlvbiIsInBhc3N3b3JkX2NoYW5nZWQiOiIifQ.28oPeGddQ5u5gUlYaHTjkHlzcaTmHFM6Rn7DrDKroN0"
+    token = input("Введи токен с сайта: ")
     global skill_for_up
 
     api = MMOAPI(server, token, character) #Вызов класса, передача в него переменных
