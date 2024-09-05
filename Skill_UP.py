@@ -19,7 +19,7 @@ def main(character):
     if skill_for_up == "":
         skill_for_up = input("Выбери навык, который необходимо апнуть: ")
     items = api.get_items_by_skill_level(skill_for_up, level) #Запись в список всех возможных предметов для крафта (2)
-
+    #Криво работает. Берёт не то значение уровня навыка
     for item in items: #Цикл для вывода предметов для крафта для навыка
         if item in ("wooden_staff"):
             continue
