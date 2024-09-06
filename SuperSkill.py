@@ -22,5 +22,6 @@ def s_skill (character, token, optimize_weapone):
                 resourcefarm(api, component)
         for craft_item in reversed(api.craft_road): #Проход по всем этапам рецепта крафта
             finish_craft(api, craft_item)
-
+        api.craft_road.clear()
+        api.components.сlear()
 

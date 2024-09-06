@@ -91,7 +91,7 @@ class MMOAPI:
             print(f"Нужен предмет из заданий: {item} x {quantity}")
             return
 
-        if item_data["craft"] is None: #Если у предмета не крафтящийся
+        if item_data["craft"] is None: #Если предмет не надо крафтить
             if item_data["subtype"] in ["mob", "food"]: #Если предмет достаётся из моба
                 mob = self.get_monster_by_item(item) #Запись в переменную имя монстра из которого дропается предмет (3.2)
                 self.components.append({"code": item, "quantity": quantity, "mob": mob, "subtype": item_data["subtype"]}) #Запись в список элемента содержащего всю нужную инфу по предмету

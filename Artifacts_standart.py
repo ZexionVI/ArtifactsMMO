@@ -1,5 +1,4 @@
 import time
-from Artifacts_classes import MMOAPI
 
 def item_list_skill(api):
     skills = []
