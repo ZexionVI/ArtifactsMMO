@@ -5,9 +5,9 @@ from Artifacts_standart import item_list_craft, craftnroad, mobfarm, resourcefar
 #Основные неизменные переменные (сервер, токен и выбор имени персонажа)
 server = "https://api.artifactsmmo.com"
 
-def s_craft (character, token, optimize_weapone):
+def s_craft (name, token, optimize_weapone):
 
-    api = MMOAPI(server, token, character) #Вызов класса, передача в него переменных
+    api = MMOAPI(server, token, name) #Вызов класса, передача в него переменных
 
     item_list_craft(api)
 
