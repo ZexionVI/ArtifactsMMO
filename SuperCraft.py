@@ -26,5 +26,3 @@ def s_craft (name, token, optimize_weapone):
 
     for craft_item in reversed(api.craft_road): #Проход по всем этапам рецепта крафта
         finish_craft(api, craft_item)
-
-

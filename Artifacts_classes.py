@@ -98,7 +98,7 @@ class MMOAPI:
             else: #Если предмет надо добывать где-то
                 resource = self.get_resource_by_item(item) #Запись в переменную название ресурса из которого добывается нужный предмет (3.1)
                 self.components.append({"code": item, "quantity": quantity, "resource": resource, "subtype": item_data["subtype"]}) #Запись в список элемента содержащего всю нужную инфу по предмету
-        else: #Если у предмета не крафтящийся
+        else: #Если предмет надо крафтить
             self.craft_road.append({"code": item, "skill": item_data["craft"]["skill"], "quantity": quantity}) #Запись пути крафта (какой предмет, какой скилл крафта для него и кол-во)
             for component in item_data["craft"]["items"]: #Цикл для каждого предмета из крафта
                 self.craft_item(component["code"], component["quantity"] * quantity) #Повтор функции для каждого предмета из крафта с указанием кол-ва (3)
