@@ -63,16 +63,17 @@ class MMOAPI:
             "woodcutting": "woodcutting_level",
             "mining": "mining_level"
         }
-        skills = {skill: data.get(level_key, 0) for skill, level_key in skill_mapping.items()}
-        return skills
+        levels = {skill: data.get(level_key, 0) for skill, level_key in skill_mapping.items()}
+        return levels
 
     def get_items_by_skill_level(self, skill: str, level: int) -> List[str]: #-(2)
         params = {
             "max_level": level,
             "craft_skill": skill
         }
-        items = self.request(self.urls['items'], params=params)["data"] #(0)
-        return [item["code"] for item in items]
+        items_from_skill = self.request(self.urls['items'], params=params)["data"] #(0)
+        items = [item["code"] for item in items_from_skill]
+        return items
 
     def get_resource_by_item(self, item_name: str) -> str: #-(3.1)
         params = {"drop": item_name}

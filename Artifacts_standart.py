@@ -14,7 +14,7 @@ def item_list_skill(api):
         if s['skill'] == i_skill:
             for item in s['items']:
                 if item == "wooden_staff":
-                    s['items'].remove("wooden_staff")
+                    s['items'].remove(item)
                 else:
                     print(f"- {item}")
             return s

@@ -8,15 +8,15 @@ print("1)Крафт предмета;")
 print("2)Поднятие скилла;")
 v = int(input("Твой выбор: "))
 token = input("Введи токен с сайта: ")
-name = input("Имя персонажа: ")
-optimize_weapone = input("Нужно ли менять оружие во время битвы с мобами? (y/n): ")
+character = input("Имя персонажа: ")
+o_w = input("Нужно ли менять оружие во время битвы с мобами? (y/n): ")
 
 if v == 1:
     while True:
-        s_craft(name, token, optimize_weapone)
+        s_craft(character, token, o_w)
 
-elif v == 2:
+elif v == 2:    
     while True:
-        s_skill(name, token, optimize_weapone)
+        s_skill(character, token, o_w)
 else:
     print("Хуита")

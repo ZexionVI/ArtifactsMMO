@@ -5,7 +5,7 @@ from Artifacts_standart import item_list_skill, craftnroad, mobfarm, resourcefar
 #Основные неизменные переменные (сервер, токен и выбор имени персонажа)
 server = "https://api.artifactsmmo.com"
 
-def s_skill (character, token, optimize_weapone):
+def s_skill (character, token, o_w):
 
     api = MMOAPI(server, token, character) #Вызов класса, передача в него переменных
 
@@ -17,7 +17,7 @@ def s_skill (character, token, optimize_weapone):
         craftnroad(api, item, quantity)
         for component in api.components: #Цикл для каждого элемента в списке с компонентами которые нужны для крафта
             if component["subtype"] in ["mob", "food"]: #Если предмет выбивается из моба
-                mobfarm(api, component, optimize_weapone)
+                mobfarm(api, component, o_w)
             elif "resource" in component: #Если предмет добывается из ресурса
                 resourcefarm(api, component)
         for craft_item in reversed(api.craft_road): #Проход по всем этапам рецепта крафта
