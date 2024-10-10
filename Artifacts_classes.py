@@ -24,7 +24,9 @@ class MMOAPI:
             "resources": f"{self.server}/resources/",
             "unequip": f"{self.server}/my/{self.character}/action/unequip",
             "equip": f"{self.server}/my/{self.character}/action/equip",
-            "sell":f"{self.server}/my/{self.character}/action/ge/sell"
+            "sell":f"{self.server}/my/{self.character}/action/ge/sell",
+            "bank_items":f"{self.server}/my/bank/items"
+            #"bank_withdraw"
         }
         self.components = []
         self.craft_road = []
@@ -103,6 +105,16 @@ class MMOAPI:
             self.craft_road.append({"code": item, "skill": item_data["craft"]["skill"], "quantity": quantity}) #Запись пути крафта (какой предмет, какой скилл крафта для него и кол-во)
             for component in item_data["craft"]["items"]: #Цикл для каждого предмета из крафта
                 self.craft_item(component["code"], component["quantity"] * quantity) #Повтор функции для каждого предмета из крафта с указанием кол-ва (3)
+
+    def check_bank(self, item: str):
+        params = {"item_code": item}
+        bank_item_data = self.request(self.urls['bank_items'], params=params)["data"] #(0)
+        if len(bank_item_data) != 0:
+            print(f"В банке есть {item}")
+            return bank_item_data
+        
+
+    #def withdraw_bank():
 
     def find_location(self, name: str) -> Tuple[int, int]: #-(4)
         params = {"content_code": name}
