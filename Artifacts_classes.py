@@ -88,7 +88,7 @@ class MMOAPI:
         return monsters[0]["code"] if monsters else None
 
     def craft_item(self, item: str, quantity: int): #-(3)
-        item_data = self.request(f"{self.urls['items']}{item}")["data"]["item"] #(0)
+        item_data = self.request(f"{self.urls['items']}{item}")["data"] #(0)
 
         if item_data["subtype"] == "task": #Если предмет достаётся из таски, то просто вывод сколько нужно и каких предметов и сразу же возврат
             print(f"Нужен предмет из заданий: {item} x {quantity}")
